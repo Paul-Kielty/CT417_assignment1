@@ -1,14 +1,11 @@
-//import java.util.ArrayList;
+import java.util.ArrayList;
 
 public class Student {
-//
-//    public static void main(String[] args) {
-//        Student s1 = new Student("Paul", 21, "9-4-1999", 6);
-//        System.out.println(s1.getUsername());
-//    }
 
     private String name, DOB, username;
     private int age, ID;
+    private ArrayList<Module> modules = new ArrayList<Module>();
+    private ArrayList<Course> courses = new ArrayList<Course>();
 
     public Student(String name, int age, String DOB, int ID){
         this.name = name;
@@ -17,43 +14,41 @@ public class Student {
         this.username = getUsername();
     }
 
-    public String getUsername(){
+    public String getUsername() {
         return name+age;
     }
 
-    public String getName() {
-        return name;
+    public void addCourse(Course c) {
+        courses.add(c);
+        for (Module m:modules){ //Add modules if student enrolled in new course
+            addModule(m);
+        }
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void addModule(Module m) {
+        modules.add(m);
     }
 
-    public String getDOB() {
-        return DOB;
-    }
+    public ArrayList<Module> getModules() { return modules; }
+    public void setModules(ArrayList<Module> modules) { this.modules = modules; }
 
-    public void setDOB(String DOB) {
-        this.DOB = DOB;
-    }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public ArrayList<Course> getCourses() { return courses; }
+    public void setCourses(ArrayList<Course> courses) { this.courses = courses; }
 
-    public int getAge() {
-        return age;
-    }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public int getID() {
-        return ID;
-    }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+    public String getDOB() { return DOB; }
+    public void setDOB(String DOB) { this.DOB = DOB; }
+
+
+    public int getAge() { return age; }
+    public void setAge(int age) { this.age = age; }
+
+
+    public int getID() { return ID; }
+    public void setID(int ID) { this.ID = ID; }
 }
