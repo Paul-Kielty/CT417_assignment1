@@ -10,22 +10,30 @@ public class Course {
     private DateTime startDate, endDate;// = new DateTime(2020, 9, 28, 0 ,0);
 //    = new DateTime(2020, 9, 28, 0 ,0);
 
-    public Course(String courseName, DateTime startDate, DateTime endDate){
+    public Course(String courseName, DateTime startDate, DateTime endDate) {
         this.courseName = courseName;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public void addModule(Module m){
+    public void addModule(Module m) {
         moduleList.add(m);
+        m.addCourse(this);
+    }
+
+    public void removeModule(Module m){
+        moduleList.remove(m);
+        m.removeCourse(this);
     }
 
     public void enrollStudent(Student s){
         enrolledStudents.add(s);
+        s.addCourse(this);
     }
 
     public void removeStudent(Student s){
         enrolledStudents.remove(s);
+        s.removeCourse(this);
     }
 
     public String getCourseName() { return courseName; }

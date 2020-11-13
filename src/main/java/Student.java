@@ -20,13 +20,25 @@ public class Student {
 
     public void addCourse(Course c) {
         courses.add(c);
-        for (Module m:modules){ //Add modules if student enrolled in new course
+        for (Module m: c.getModuleList()){ //Add modules if student enrolled in new course
             addModule(m);
+        }
+    }
+
+    public void removeCourse(Course c) {
+        courses.remove(c);
+        for (Module m: c.getModuleList()){ //Remove modules if student removed course
+            removeModule(m);
         }
     }
 
     public void addModule(Module m) {
         modules.add(m);
+        m.addStudent(this);
+    }
+    public void removeModule(Module m) {
+        modules.remove(m);
+        m.removeStudent(this);
     }
 
     public ArrayList<Module> getModules() { return modules; }
