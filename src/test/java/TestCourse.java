@@ -11,10 +11,11 @@ public class TestCourse{
 
     private Module m1 = new Module("Software Engineering III", "CT417");
     private Module m2 = new Module("Digital Signal Processing", "EE445");
-//    private Module m3 = new Module("Advanced Professional Skills", "CT436");
+    private Module m3 = new Module("Advanced Professional Skills", "CT436");
 
-    private Student s1 = new Student("Paul", 21, "9-4-1999", 00001);
-    private Student s2 = new Student("Maya", 22, "9-4-1998", 00002);
+    private Student s1 = new Student("Paul", 21, "9-4-1999", 10001);
+    private Student s2 = new Student("Maya", 22, "9-4-1998", 10002);
+    private Student s3 = new Student("Enda", 20, "9-4-2000", 10003);
 
     @Test
     public void testAddModule() {
@@ -55,5 +56,23 @@ public class TestCourse{
         System.out.println(c1.getEnrolledStudents());
         removeStudentControl.add(s2);
         assertEquals(c1.getEnrolledStudents(),removeStudentControl);
+    }
+
+    @Test
+    public void testToString(){
+        c1.addModule(m1);
+        c1.addModule(m2);
+        c1.addModule(m3);
+        c1.enrollStudent(s1);
+        c1.enrollStudent(s2);
+        m1.addStudent(s3);
+        System.out.println(c1);
+        System.out.println("\nModule 1 students:\n"+ m1.getStudentListString());
+        System.out.println("\nModule 2 students:\n"+m2.getStudentListString());
+
+        System.out.println("\nStudent 1 courses & modules\n"+s1.getCourseListString()+s1.getModuleListString());
+        System.out.println("\nStudent 2 courses & modules\n"+s2.getCourseListString()+s2.getModuleListString());
+        System.out.println("\nStudent 3 courses & modules\n"+s3.getCourseListString()+s3.getModuleListString());
+
     }
 }

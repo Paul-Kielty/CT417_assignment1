@@ -11,6 +11,7 @@ public class Student {
         this.name = name;
         this.age = age;
         this.DOB = DOB;
+        this.ID = ID;
         this.username = getUsername();
     }
 
@@ -18,27 +19,55 @@ public class Student {
         return name+age;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public void addCourse(Course c) {
         courses.add(c);
-        for (Module m: c.getModuleList()){ //Add modules if student enrolled in new course
-            addModule(m);
-        }
+//        for (Module m: c.getModuleList()){ //Add modules if student enrolled in new course
+//            addModule(m);
+//        }
     }
 
     public void removeCourse(Course c) {
         courses.remove(c);
-        for (Module m: c.getModuleList()){ //Remove modules if student removed course
-            removeModule(m);
-        }
+//        for (Module m: c.getModuleList()){ //Remove modules if student removed course
+//            removeModule(m);
+//        }
     }
 
     public void addModule(Module m) {
         modules.add(m);
-        m.addStudent(this);
+//        m.addStudent(this);
     }
     public void removeModule(Module m) {
         modules.remove(m);
-        m.removeStudent(this);
+//        m.removeStudent(this);
+    }
+
+    public String arrayListToString(ArrayList al) {
+        String list = "";
+        for (Object o : al) {
+            list += o + "\n";
+        }
+        return list;
+    }
+
+    public String getModuleListString(){
+        return arrayListToString(modules);
+    }
+    public String getCourseListString(){
+        String courseListString = "";
+        for (Course c : courses) {
+            courseListString += c.getCourseName() + "\n";
+        }
+        return courseListString;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("Username: %s\tID: %s\tDOB: %s", username, ID, DOB);
     }
 
     public ArrayList<Module> getModules() { return modules; }

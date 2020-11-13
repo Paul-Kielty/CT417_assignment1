@@ -12,10 +12,12 @@ public class Module {
 
     public void addStudent(Student s) {
         studentList.add(s);
+        s.addModule(this);
     }
 
     public void removeStudent(Student s) {
         studentList.remove(s);
+        s.removeModule(this);
     }
 
     public void addCourse(Course c){
@@ -24,6 +26,27 @@ public class Module {
 
     public void removeCourse(Course c){
         courseList.remove(c);
+    }
+
+    @Override
+    public String toString(){
+        return String.format("Module Name: %s\tID: %s", moduleName, moduleID);
+    }
+
+    public String arrayListToString(ArrayList al) {
+        String list = "";
+        for (Object o : al) {
+            list += o + "\n";
+        }
+    return list;
+    }
+
+    public String getCourseListString(){
+        return arrayListToString(courseList);
+    }
+
+    public String getStudentListString(){
+        return arrayListToString(studentList);
     }
 
     public ArrayList<Course> getCourseList() { return courseList; }
