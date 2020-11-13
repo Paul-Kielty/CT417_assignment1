@@ -1,10 +1,16 @@
 //import java.util.ArrayList;
 
 public class Student {
+//
+//    public static void main(String[] args) {
+//        Student s1 = new Student("Paul", 21, "9-4-1999", 6);
+//        System.out.println(s1.getUsername());
+//    }
+
     private String name, DOB, username;
     private int age, ID;
 
-    public Student(String name, int age, String DOB, int ID, String username){
+    public Student(String name, int age, String DOB, int ID){
         this.name = name;
         this.age = age;
         this.DOB = DOB;
