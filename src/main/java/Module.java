@@ -1,13 +1,12 @@
 import java.util.ArrayList;
 public class Module {
 
-    private String moduleName;
-    private int moduleID;
+    private String moduleName, moduleID;
     private ArrayList<Student> studentList = new ArrayList<Student>();
 //    private ArrayList<Course> courseList = new ArrayList<Course>();
 
 
-    public Module(String moduleName, int moduleID, ArrayList studentList) {
+    public Module(String moduleName, String moduleID) {
         this.moduleName = moduleName;
         this.moduleID = moduleID;
 //        this.studentList = studentList;
@@ -25,11 +24,11 @@ public class Module {
         this.moduleName = moduleName;
     }
 
-    public int getModuleID() {
+    public String getModuleID() {
         return moduleID;
     }
 
-    public void setModuleID(int moduleID) {
+    public void setModuleID(String moduleID) {
         this.moduleID = moduleID;
     }
 
