@@ -1,16 +1,16 @@
-//import org.junit.Test;
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class TestStudent extends TestCase{
+import static org.junit.Assert.assertEquals;
 
-    private Student student1 = new Student("Paul.Kielty", 21, "9-4-1999", 00001);
+public class TestStudent{
 
-//    @Test
+    private Student student1 = new Student("Paul Kielty", 21, "9-4-1999", 00001);
+
+    @Test
     public void testGetUsername() {
-        System.out.println(student1.getUsername());
+        String usernameControl = "Paul Kielty21";
+        assertEquals(student1.getUsername(), usernameControl);
     }
-//    public static void main(String[] args) {
-//        Student s1 = new Student("Paul", 21, "9-4-1999", 6);
-//        System.out.println(s1.getUsername());
-//    }
+
+
 }

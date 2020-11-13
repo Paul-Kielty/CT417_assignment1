@@ -24,26 +24,43 @@ public class Student {
     }
 
     public void addCourse(Course c) {
-        courses.add(c);
-//        for (Module m: c.getModuleList()){ //Add modules if student enrolled in new course
-//            addModule(m);
-//        }
+        if (!courses.contains(c)) {
+            courses.add(c);
+        }
+        for (Module m : c.getModuleList()){ //add all course modules
+            addModule(m);
+        }
+        if (!c.getEnrolledStudents().contains(this)) {
+            c.enrollStudent(this); //update student list in course object
+        }
     }
 
     public void removeCourse(Course c) {
-        courses.remove(c);
-//        for (Module m: c.getModuleList()){ //Remove modules if student removed course
-//            removeModule(m);
-//        }
+        courses.remove(c); //remove course from student
+
+        for (Module m : c.getModuleList()){ //remove all course modules
+            removeModule(m);
+        }
+        if(c.getEnrolledStudents().contains(this)) {
+            c.removeStudent(this); //update student list in course object
+        }
     }
 
     public void addModule(Module m) {
-        modules.add(m);
-//        m.addStudent(this);
+        if (!modules.contains(m)) {
+            modules.add(m);
+        }
+        if (!m.getStudentList().contains(this)){
+            m.addStudent(this); //update student list in module class
+        }
     }
     public void removeModule(Module m) {
-        modules.remove(m);
-//        m.removeStudent(this);
+        if (modules.contains(m)) {
+            modules.remove(m);
+        }
+        if (m.getStudentList().contains(this)) {
+            m.removeStudent(this); //update student list in module class
+        }
     }
 
     public String arrayListToString(ArrayList al) {

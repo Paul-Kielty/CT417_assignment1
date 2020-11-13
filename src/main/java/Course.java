@@ -17,7 +17,9 @@ public class Course {
     }
 
     public void addModule(Module m) {
-        moduleList.add(m);
+        if (!moduleList.contains(m)) {
+            moduleList.add(m);
+        }
         m.addCourse(this);
         for (Student s : enrolledStudents) {
             s.addModule(m);
@@ -25,26 +27,32 @@ public class Course {
     }
 
     public void removeModule(Module m){
-        moduleList.remove(m);
+        if (moduleList.contains(m)) {
+            moduleList.remove(m);
+        }
         m.removeCourse(this);
         for (Student s : enrolledStudents) {
-//            s.removeModule(m);
-            m.removeStudent(s);
+            s.removeModule(m);
         }
     }
 
     public void enrollStudent(Student s){
-        enrolledStudents.add(s);
+        if(!enrolledStudents.contains(s)) {
+            enrolledStudents.add(s);
+        }
         for (Module m: this.getModuleList()){ //Add modules if student enrolled in new course
-//            s.addModule(m);
+            s.addModule(m);
             m.addStudent(s);
         }
-        s.addCourse(this);
+        if(!s.getCourses().contains(this)) {
+            s.addCourse(this);
+        }
     }
 
     public void removeStudent(Student s){
         enrolledStudents.remove(s);
         s.removeCourse(this);
+
     }
 
     public String arrayListToString(ArrayList al) {

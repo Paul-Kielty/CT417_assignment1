@@ -11,21 +11,42 @@ public class Module {
     }
 
     public void addStudent(Student s) {
-        studentList.add(s);
-        s.addModule(this);
+        if (!studentList.contains(s)) {
+            studentList.add(s);
+        }
+        if (!s.getModules().contains(this)) {
+            s.addModule(this); //update student's module list
+        }
     }
 
     public void removeStudent(Student s) {
-        studentList.remove(s);
-        s.removeModule(this);
+//        if (studentList.contains(s)) {
+            studentList.remove(s);
+//        }
+        if (s.getModules().contains(this)) {
+            s.removeModule(this);
+        }
     }
 
     public void addCourse(Course c){
-        courseList.add(c);
+        if (!courseList.contains(c)) {
+            courseList.add(c);
+        }
+        for (Student s : c.getEnrolledStudents()){ //add students who had this module because they were enrolled in course
+            if (!studentList.contains(s)){
+                studentList.add(s);
+            }
+        }
     }
 
     public void removeCourse(Course c){
-        courseList.remove(c);
+//        if (courseList.contains(c)) {
+            courseList.remove(c);
+//        }
+        for (Student s : c.getEnrolledStudents()){ //remove students who had this module because they were enrolled in course
+            studentList.remove(s);
+        }
+
     }
 
     @Override

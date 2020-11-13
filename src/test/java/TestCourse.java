@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 
 public class TestCourse{
     private Course c1 = new Course("BP", new DateTime(2020, 9, 28, 0,0),new DateTime(2021, 6, 4, 0,0));
-//    private Course c2 = new Course("CSIT", new DateTime(2020, 9, 28, 0,0),new DateTime(2021, 6, 4, 0,0));
+    private Course c2 = new Course("CSIT", new DateTime(2020, 9, 28, 0,0),new DateTime(2021, 6, 4, 0,0));
 
     private Module m1 = new Module("Software Engineering III", "CT417");
     private Module m2 = new Module("Digital Signal Processing", "EE445");
@@ -53,22 +53,36 @@ public class TestCourse{
         c1.enrollStudent(s2);
         c1.removeStudent(s1);
         ArrayList<Student> removeStudentControl = new ArrayList<Student>();
-        System.out.println(c1.getEnrolledStudents());
+//        System.out.println(c1.getEnrolledStudents());
         removeStudentControl.add(s2);
+
         assertEquals(c1.getEnrolledStudents(),removeStudentControl);
     }
 
     @Test
     public void testToString(){
+
         c1.addModule(m1);
         c1.addModule(m2);
         c1.addModule(m3);
         c1.enrollStudent(s1);
         c1.enrollStudent(s2);
+
         m1.addStudent(s3);
+//        m1.removeStudent(s1);
+
+        c1.removeModule(m1);
+//        c1.removeStudent(s2);
+        s3.addCourse(c2);
+        s2.removeCourse(c1);
+        s3.removeCourse(c1);
+
         System.out.println(c1);
-        System.out.println("\nModule 1 students:\n"+ m1.getStudentListString());
+        System.out.println(c2);
+
+        System.out.println("\nModule 1 students:\n"+m1.getStudentListString());
         System.out.println("\nModule 2 students:\n"+m2.getStudentListString());
+        System.out.println("\nModule 3 students:\n"+m3.getStudentListString());
 
         System.out.println("\nStudent 1 courses & modules\n"+s1.getCourseListString()+s1.getModuleListString());
         System.out.println("\nStudent 2 courses & modules\n"+s2.getCourseListString()+s2.getModuleListString());
