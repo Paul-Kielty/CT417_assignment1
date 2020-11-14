@@ -7,52 +7,56 @@ public class Course {
     private String courseName;
     private ArrayList<Module> moduleList = new ArrayList<Module>();
     private ArrayList<Student> enrolledStudents = new ArrayList<Student>();
-    private DateTime startDate, endDate;// = new DateTime(2020, 9, 28, 0 ,0);
-//    = new DateTime(2020, 9, 28, 0 ,0);
+    private DateTime startDate, endDate;
 
-    public Course(String courseName, DateTime startDate, DateTime endDate) {
+    public Course(String courseName, DateTime startDate, DateTime endDate) { // Course constructor
         this.courseName = courseName;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public void addModule(Module m) {
-        if (!moduleList.contains(m)) {
+    public void addModule(Module m) { // Method to add a module to this course
+        if (!moduleList.contains(m)) { // Check if module is NOT already in moduleList
             moduleList.add(m);
         }
-        m.addCourse(this);
-        for (Student s : enrolledStudents) {
-            s.addModule(m);
+        if (!m.getCourseList().contains(this)) { // Check if this course is NOT already in module's course list
+            m.addCourse(this);
+        }
+        for (Student s : enrolledStudents) { // For each student enrolled in this course
+            s.addModule(m); // Update the student's course (and module) list
         }
     }
 
-    public void removeModule(Module m){
-        if (moduleList.contains(m)) {
+    public void removeModule(Module m) { // Method to remove a module from this course
+        if (moduleList.contains(m)) { // If the course IS already in moduleList
             moduleList.remove(m);
         }
-        m.removeCourse(this);
-        for (Student s : enrolledStudents) {
-            s.removeModule(m);
+        if (m.getCourseList().contains(this)) { // If this course is already in the module's courseList
+            m.removeCourse(this);
+        }
+        for (Student s : enrolledStudents) { // For each student enrolled in this course
+            s.removeModule(m); // Remove the module from the student's module list
         }
     }
 
-    public void enrollStudent(Student s){
-        if(!enrolledStudents.contains(s)) {
+    public void enrollStudent(Student s){ // Method to enroll a student in this course
+        if(!enrolledStudents.contains(s)) { // If the student is NOT already in enrolledStudents
             enrolledStudents.add(s);
         }
-        for (Module m: this.getModuleList()){ //Add modules if student enrolled in new course
-            s.addModule(m);
-            m.addStudent(s);
+        for (Module m: this.getModuleList()){ // For each module in this course
+            s.addModule(m); // Add the module to the student's module list
+            m.addStudent(s); // Add the student to the module's student list
         }
-        if(!s.getCourses().contains(this)) {
-            s.addCourse(this);
+        if(!s.getCourses().contains(this)) { // If this course is NOT already in the student's course list
+            s.addCourse(this); // Add the course to the student's course list
         }
     }
 
-    public void removeStudent(Student s){
-        enrolledStudents.remove(s);
-        s.removeCourse(this);
-
+    public void removeStudent(Student s){ // Method to remove a student from this course
+        if(enrolledStudents.contains(s)) { // If the student IS already in enrolledStudents
+            enrolledStudents.remove(s); // Remove the student from this course's enrolledStudents
+            s.removeCourse(this); // Remove the course from the student's course list
+        }
     }
 
     public String arrayListToString(ArrayList al) {

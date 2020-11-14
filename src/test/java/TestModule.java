@@ -1,22 +1,57 @@
-import junit.framework.TestCase; //make junit test
 import org.joda.time.DateTime;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class TestModule extends TestCase {
+import static org.junit.Assert.assertEquals;
+
+public class TestModule {
     private Module m1 = new Module("Software Engineering III", "CT417");
 
-    private Student s1 = new Student("Paul", 21, new DateTime(1999,4,9,0,0), 00001);
-    private Student s2 = new Student("Maya", 22, new DateTime(1998,4,9,0,0), 00002);
-//    private Student s3 = new Student("Enda", 20, "9-4-2000", 00003);
+    private Student s1 = new Student("Paul Kielty", new DateTime(1999,4,9,0,0), 10001);
+    private Student s2 = new Student("Maya McDevitt", new DateTime(1998,4,9,0,0), 10002);
+    private Course c1 = new Course("BP", new DateTime(2020, 9, 28, 0,0),new DateTime(2021, 6, 4, 0,0));
 
-    //add more tests
+    private ArrayList<Student> studentListControl = new ArrayList<Student>();
+    private ArrayList<Course> courseListControl = new ArrayList<Course>();
+
+    @Before
+    public void testModuleSetup() {
+        studentListControl.add(s1);
+        courseListControl.add(c1);
+    }
+
+    @Test
     public void testAddStudent() {
         m1.addStudent(s1);
-        m1.addStudent(s2);
-        ArrayList<Student> studentListControl = new ArrayList<Student>();
-        studentListControl.add(s1);
-        studentListControl.add(s2);
-        assertEquals(m1.getStudentList(), studentListControl);
+        assertEquals(studentListControl, m1.getStudentList());
+    }
+
+    @Test
+    public void testRemoveStudent() {
+        m1.removeStudent(s1);
+        studentListControl.remove(s1);
+        assertEquals(studentListControl,m1.getStudentList());
+    }
+
+    @Test
+    public void testAddCourse() {
+        m1.addCourse(c1);
+        assertEquals(courseListControl, m1.getCourseList());
+
+        c1.enrollStudent(s1);
+        m1.removeStudent(s1);
+        System.out.println(m1.getStudentList());
+        System.out.println(c1);
+        System.out.println(s1.getModules());
+    }
+
+    @Test
+    public void testRemoveCourse() {
+        m1.addCourse(c1);
+        m1.removeCourse(c1);
+        courseListControl.remove(c1);
+        assertEquals(courseListControl, m1.getCourseList());
     }
 }

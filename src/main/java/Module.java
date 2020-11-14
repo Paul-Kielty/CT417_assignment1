@@ -5,46 +5,54 @@ public class Module {
     private ArrayList<Student> studentList = new ArrayList<Student>();
     private ArrayList<Course> courseList = new ArrayList<Course>();
 
-    public Module(String moduleName, String moduleID) {
+    public Module(String moduleName, String moduleID) { // Module constructor
         this.moduleName = moduleName;
         this.moduleID = moduleID;
     }
 
-    public void addStudent(Student s) {
-        if (!studentList.contains(s)) {
-            studentList.add(s);
+    public void addStudent(Student s) { // Method to add a student to this module
+        if (!studentList.contains(s)) { // Check if student is NOT already in studentList
+            studentList.add(s); // If not a duplicate, add to studentList
         }
-        if (!s.getModules().contains(this)) {
-            s.addModule(this); //update student's module list
+        if (!s.getModules().contains(this)) { // Check if module is NOT already in student's module list
+            s.addModule(this); // Update student's module list
         }
     }
 
-    public void removeStudent(Student s) {
-//        if (studentList.contains(s)) {
+    public void removeStudent(Student s) { // Method to remove a student from this module
+        if (studentList.contains(s)) { // Check if student IS already in studentList
             studentList.remove(s);
-//        }
-        if (s.getModules().contains(this)) {
-            s.removeModule(this);
+        }
+        if (s.getModules().contains(this)) { // Check if module IS already in student's module list
+            s.removeModule(this); // Update student's module list
         }
     }
 
-    public void addCourse(Course c){
-        if (!courseList.contains(c)) {
-            courseList.add(c);
+    public void addCourse(Course c){ // Method to add a course to this module
+        if (!courseList.contains(c)) { // Check if course is NOT already in courseList
+            courseList.add(c); // If not a duplicate, add to ArrayList
         }
-        for (Student s : c.getEnrolledStudents()){ //add students who had this module because they were enrolled in course
-            if (!studentList.contains(s)){
+        if (!c.getModuleList().contains(this)) { // Check if this module is NOT already in course's module list
+            c.addModule(this); // If not a duplicate, add this module to course
+        }
+        for (Student s : c.getEnrolledStudents()){ // For each Student enrolled in course
+            if (!studentList.contains(s)){ // If the Student is NOT already in studentList
                 studentList.add(s);
             }
         }
     }
 
-    public void removeCourse(Course c){
-//        if (courseList.contains(c)) {
+    public void removeCourse(Course c){ // Method to remove a course from this module
+        if (courseList.contains(c)) { // Check if course IS already in courseList
             courseList.remove(c);
-//        }
-        for (Student s : c.getEnrolledStudents()){ //remove students who had this module because they were enrolled in course
-            studentList.remove(s);
+        }
+        if (c.getModuleList().contains(this)) { // Check if this module IS already in course's module list
+            c.removeModule(this);
+        }
+        for (Student s : c.getEnrolledStudents()) { // For each student enrolled in course
+            if (!studentList.contains(s)) { // If the Student IS already in studentList
+                studentList.remove(s);
+            }
         }
 
     }
