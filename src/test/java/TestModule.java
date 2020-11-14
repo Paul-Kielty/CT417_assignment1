@@ -11,6 +11,7 @@ public class TestModule {
 
     private Student s1 = new Student("Paul Kielty", new DateTime(1999,4,9,0,0), 10001);
     private Student s2 = new Student("Maya McDevitt", new DateTime(1998,4,9,0,0), 10002);
+
     private Course c1 = new Course("BP", new DateTime(2020, 9, 28, 0,0),new DateTime(2021, 6, 4, 0,0));
 
     private ArrayList<Student> studentListControl = new ArrayList<Student>();

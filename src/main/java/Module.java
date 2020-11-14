@@ -70,9 +70,14 @@ public class Module {
     return list;
     }
 
-    public String getCourseListString(){
-        return arrayListToString(courseList);
+    public String getCourseListString(){ // Get courses names listed in String
+        String courseListString = ""; // (arrayListToString isn't used as the Course toString contains more info than desired)
+        for (Course c : courseList) {
+            courseListString += c.getCourseName() + "\n";
+        }
+        return courseListString;
     }
+
 
     public String getStudentListString(){
         return arrayListToString(studentList);
