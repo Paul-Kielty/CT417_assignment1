@@ -54,9 +54,9 @@ public class TestCourse{
         studentListControl.remove(s1);
         assertEquals(studentListControl, c1.getEnrolledStudents());
     }
-
-    @Test
-    public void testToString(){
+//
+//    @Test
+//    public void testToString(){
 
 //        c1.addModule(m1);
 //        c1.addModule(m2);
@@ -84,5 +84,5 @@ public class TestCourse{
 //        System.out.println("\nStudent 2 courses & modules\n"+s2.getCourseListString()+s2.getModuleListString());
 //        System.out.println("\nStudent 3 courses & modules\n"+s3.getCourseListString()+s3.getModuleListString());
 
-    }
+//    }
 }
