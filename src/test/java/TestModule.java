@@ -43,9 +43,6 @@ public class TestModule {
 
         c1.enrollStudent(s1);
         m1.removeStudent(s1);
-        System.out.println(m1.getStudentList());
-        System.out.println(c1);
-        System.out.println(s1.getModules());
     }
 
     @Test

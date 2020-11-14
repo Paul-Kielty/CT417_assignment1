@@ -51,7 +51,6 @@ public class TestStudent{
     public void testAddCourse(){
         s1.addCourse(c1);
         assertEquals(coursesControl, s1.getCourses());
-        System.out.println(coursesControl);
     }
 
     @Test
