@@ -3,4 +3,4 @@
 .object
 .class
 .gitignore
-target
+target/
