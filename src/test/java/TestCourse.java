@@ -13,9 +13,9 @@ public class TestCourse{
     private Module m2 = new Module("Digital Signal Processing", "EE445");
     private Module m3 = new Module("Advanced Professional Skills", "CT436");
 
-    private Student s1 = new Student("Paul", 21, "9-4-1999", 10001);
-    private Student s2 = new Student("Maya", 22, "9-4-1998", 10002);
-    private Student s3 = new Student("Enda", 20, "9-4-2000", 10003);
+    private Student s1 = new Student("Paul", 21, new DateTime(1999,4,9,0,0), 10001);
+    private Student s2 = new Student("Maya", 22, new DateTime(1998,4,9,0,0), 10002);
+    private Student s3 = new Student("Enda", 20, new DateTime(2000,4,9,0,0), 10003);
 
     @Test
     public void testAddModule() {

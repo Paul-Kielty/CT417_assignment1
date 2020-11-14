@@ -1,11 +1,13 @@
 import junit.framework.TestCase; //make junit test
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
 
 public class TestModule extends TestCase {
     private Module m1 = new Module("Software Engineering III", "CT417");
 
-    private Student s1 = new Student("Paul.Kielty", 21, "9-4-1999", 00001);
-    private Student s2 = new Student("Maya", 22, "9-4-1998", 00002);
+    private Student s1 = new Student("Paul", 21, new DateTime(1999,4,9,0,0), 00001);
+    private Student s2 = new Student("Maya", 22, new DateTime(1998,4,9,0,0), 00002);
 //    private Student s3 = new Student("Enda", 20, "9-4-2000", 00003);
 
     //add more tests

@@ -1,13 +1,16 @@
 import java.util.ArrayList;
+import org.joda.time.DateTime;
+import org.joda.time.Period;
 
 public class Student {
 
-    private String name, DOB, username;
+    private String name, username;
     private int age, ID;
+    private DateTime DOB;
     private ArrayList<Module> modules = new ArrayList<Module>();
     private ArrayList<Course> courses = new ArrayList<Course>();
 
-    public Student(String name, int age, String DOB, int ID){
+    public Student(String name, int age, DateTime DOB, int ID){
         this.name = name;
         this.age = age;
         this.DOB = DOB;
@@ -19,6 +22,11 @@ public class Student {
         return name+age;
     }
 
+    public int getAge() {
+        DateTime currentDate = new DateTime();
+        Period period = new Period(DOB, currentDate);
+        return period.getYears();
+    }
     public void setUsername(String username) {
         this.username = username;
     }
@@ -99,11 +107,11 @@ public class Student {
     public void setName(String name) { this.name = name; }
 
 
-    public String getDOB() { return DOB; }
-    public void setDOB(String DOB) { this.DOB = DOB; }
+    public DateTime getDOB() { return DOB; }
+    public void setDOB(DateTime DOB) { this.DOB = DOB; }
 
 
-    public int getAge() { return age; }
+//    public int getAge() { return age; }
     public void setAge(int age) { this.age = age; }
 
 
