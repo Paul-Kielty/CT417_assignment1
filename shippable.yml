@@ -1,0 +1,12 @@
+language: java
+
+jdk:
+  - oraclejdk11
+  
+build:
+  ci:
+    - mkdir -p shippable/testresults
+    - mkdir -p shippable/codecoverage
+    
+    - shippable_retry mvn install -DskipTests=true
+    
